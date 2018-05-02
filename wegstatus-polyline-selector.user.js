@@ -6,8 +6,8 @@
 // @author       Xander "Xanland" Hoogland
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
 // @supportURL   https://github.com/xhoogland/wegstatus-polyline-selector/issues
-// @updateURL    https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/master/wegstatus-polyline-selector.js
-// @downloadURL  https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/master/wegstatus-polyline-selector.js
+// @updateURL    https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/master/wegstatus-polyline-selector.user.js
+// @downloadURL  https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/master/wegstatus-polyline-selector.user.js
 // ==/UserScript==
 
 (function () {
