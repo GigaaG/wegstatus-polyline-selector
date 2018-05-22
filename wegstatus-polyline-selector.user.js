@@ -46,14 +46,15 @@
 
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
-            const feature = W.selectionManager.getSelectedFeatures()[0];
-            const attributes = feature.model.attributes;
-            let components = feature.geometry.components;
             let polyline = '';
-            if (attributes.fwdDirection === false && attributes.revDirection === true)
-                components.reverse();
-            components.forEach(function (component) {
-                polyline = polyline + getLatLonOfComponent(component) + ' ';
+            W.selectionManager.getSelectedFeatures().forEach(function (feature) {
+                const attributes = feature.model.attributes;
+                let components = feature.geometry.components;
+                if (attributes.fwdDirection === false && attributes.revDirection === true)
+                    components.reverse();
+                components.forEach(function (component) {
+                    polyline = polyline + getLatLonOfComponent(component) + ' ';
+                });
             });
             $('#grab-polyline-textarea').val(polyline.trim());
             var copyText = document.querySelector("#grab-polyline-textarea");
