@@ -6,8 +6,8 @@
 // @author       Xander "Xanland" Hoogland
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
 // @supportURL   https://github.com/xhoogland/wegstatus-polyline-selector/issues
-// @updateURL    https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/master/wegstatus-polyline-selector.user.js
-// @downloadURL  https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/master/wegstatus-polyline-selector.user.js
+// @updateURL    https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/MultiSelect/wegstatus-polyline-selector.user.js
+// @downloadURL  https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/MultiSelect/wegstatus-polyline-selector.user.js
 // ==/UserScript==
 
 (function () {
@@ -23,7 +23,7 @@
 
     const segmentPanelObserver = new MutationObserver(function (segmentPanel) {
         const selectedItemsCount = W.selectionManager.getSelectedFeatures().length;
-        if (selectedItemsCount == 1) {
+        if (selectedItemsCount >= 1) {
             // Easy hack to show the button in F(ix)U(I)
             const $fuButtons = $('#edit-panel .more-actions');
             if ($fuButtons.css('display') == 'inline-flex') {
@@ -42,7 +42,7 @@
 
     setTimeout(function () {
         segmentPanelObserver.observe(document.querySelector('#edit-panel > div'), { childList: true });
-    }, 440);
+    }, 600);
 
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
