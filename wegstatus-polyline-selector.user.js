@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wegstatus polyline-selector
 // @namespace    https://wegstatus.nl
-// @version      0.2.1
+// @version      0.2.2
 // @description  Adds a link in the segment-panel to grab the polyline.
 // @author       Xander "Xanland" Hoogland
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
@@ -42,13 +42,13 @@
 
     setTimeout(function () {
         segmentPanelObserver.observe(document.querySelector('#edit-panel > div'), { childList: true });
-    }, 440);
+    }, 650);
 
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
             const feature = W.selectionManager.getSelectedFeatures()[0];
             const attributes = feature.model.attributes;
-            let components = feature.geometry.components;
+            const components = feature.geometry.components;
             let polyline = '';
             if (attributes.fwdDirection === false && attributes.revDirection === true)
                 components.reverse();
@@ -56,7 +56,7 @@
                 polyline = polyline + getLatLonOfComponent(component) + ' ';
             });
             $('#grab-polyline-textarea').val(polyline.trim());
-            var copyText = document.querySelector("#grab-polyline-textarea");
+            const copyText = document.querySelector("#grab-polyline-textarea");
             $('#grab-polyline-textarea').show();
             copyText.select();
             document.execCommand("copy");
