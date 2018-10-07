@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wegstatus polyline-selector
 // @namespace    https://wegstatus.nl
-// @version      0.2.1
+// @version      0.2.2
 // @description  Adds a link in the segment-panel to grab the polyline.
 // @author       Xander "Xanland" Hoogland
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
