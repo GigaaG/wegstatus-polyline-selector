@@ -42,14 +42,14 @@
 
     setTimeout(function () {
         segmentPanelObserver.observe(document.querySelector('#edit-panel > div'), { childList: true });
-    }, 600);
+    }, 650);
 
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
             let polyline = '';
             W.selectionManager.getSelectedFeatures().forEach(function (feature) {
                 const attributes = feature.model.attributes;
-                let components = feature.geometry.components;
+                const components = feature.geometry.components;
                 if (attributes.fwdDirection === false && attributes.revDirection === true)
                     components.reverse();
                 components.forEach(function (component) {
@@ -57,7 +57,7 @@
                 });
             });
             $('#grab-polyline-textarea').val(polyline.trim());
-            var copyText = document.querySelector("#grab-polyline-textarea");
+            const copyText = document.querySelector("#grab-polyline-textarea");
             $('#grab-polyline-textarea').show();
             copyText.select();
             document.execCommand("copy");
