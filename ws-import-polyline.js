@@ -12,10 +12,10 @@
 
 // De matchurl die niet werkt: /^https\:\/\/www.wegstatus.nl\/(reportal|roadworknl)\/
 (function() {
-    console.log('Start Polyline Script');
+    console.log('Start S/E');
 
     // Message on first use
-    var updateAlert = GM_getValue ("updateAlert",  "0.0.1");
+    var updateAlert = GM_getValue ("updateAlert",  "");
 
 if (updateAlert != "0.0.2") {
     GM_setValue ("updateAlert", "0.0.2");
