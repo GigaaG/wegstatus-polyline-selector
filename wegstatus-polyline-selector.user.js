@@ -1,13 +1,11 @@
 // ==UserScript==
-// @name         Wegstatus polyline-selector
+// @name         Wegstatus Polyline Selector v2
 // @namespace    https://wegstatus.nl
-// @version      0.2.2
+// @version      1.0.0
 // @description  Adds a link in the segment-panel to grab the polyline.
-// @author       Xander "Xanland" Hoogland
+// @author       Xander "Xanland" Hoogland & Sjors "GigaaG" Luyckx
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
 // @supportURL   https://github.com/xhoogland/wegstatus-polyline-selector/issues
-// @updateURL    https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/MultiSelect/wegstatus-polyline-selector.user.js
-// @downloadURL  https://raw.githubusercontent.com/xhoogland/wegstatus-polyline-selector/MultiSelect/wegstatus-polyline-selector.user.js
 // ==/UserScript==
 
 (function () {
@@ -31,7 +29,7 @@
                 $('head').append('<style type="text/css">#grab-polyline { background-position-x: 10%; }</style>');
             }
 
-            $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '">Grab polyline</button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
+            $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"> Grab polyline v2</button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
             $('#grab-polyline').tooltip({ trigger: 'hover' });
             addClickHanderForGrabPolylineButton();
         }
@@ -47,15 +45,21 @@
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
             let polyline = '';
-            W.selectionManager.getSelectedFeatures().forEach(function (feature) {
-                const attributes = feature.model.attributes;
-                const components = feature.geometry.components;
+            var countSegments = W.selectionManager._selectedFeatures.length;
+            console.log(countSegments);
+            for (a = 0 ; a < countSegments ; a++){
+                console.log("Segment: " + a);
+                const feature = W.selectionManager.getSelectedFeatures()[a].model;
+                const attributes = feature.attributes;
+                var components = W.selectionManager._selectedFeatures[a].geometry.components;
                 if (attributes.fwdDirection === false && attributes.revDirection === true)
                     components.reverse();
                 components.forEach(function (component) {
+                    console.log("Log: Components");
                     polyline = polyline + getLatLonOfComponent(component) + ' ';
                 });
-            });
+            }
+            console.log(polyline);
             $('#grab-polyline-textarea').val(polyline.trim());
             const copyText = document.querySelector("#grab-polyline-textarea");
             $('#grab-polyline-textarea').show();
