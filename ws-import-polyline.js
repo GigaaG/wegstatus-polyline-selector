@@ -14,7 +14,7 @@
 
 (function() {
     
-    console.log("S/E: Start 
+    console.log("S/E: Start script");
     
     // Get the polyline element
     var polylineElement = document.getElementsByClassName('col-xs-10')[2]
