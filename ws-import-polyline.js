@@ -1,27 +1,21 @@
 // ==UserScript==
 // @name         Wegstatus Get Start / End From Polyline
 // @namespace    http://wegstatus.nl/
-// @version      0.0.2
+// @version      0.0.3
 // @description  Adds a button to the Wegstatus Reportal to get the start and end location from the polyline.
 // @author       Sjors "GigaaG" Luyckx
 // @match        https://www.wegstatus.nl/*
-// @grant        GM_getValue
-// @grant        GM_setValue
+// @updateURL    https://raw.githubusercontent.com/GigaaG/wegstatus-polyline-selector/master/ws-import-polyline.js
+// @downloadURL  https://raw.githubusercontent.com/GigaaG/wegstatus-polyline-selector/master/ws-import-polyline.js
+// @supportURL   https://github.com/GigaaG/wegstatus-polyline-selector/issues
 
 // ==/UserScript==
 // De matchurl die niet werkt: /^https\:\/\/www.wegstatus.nl\/(reportal|roadworknl)\/
 
 (function() {
-    console.log('Start S/E');
-
-    // Message on first use
-    var updateAlert = GM_getValue ("updateAlert",  "");
-
-    if (updateAlert != "0.0.2") {
-        GM_setValue ("updateAlert", "0.0.2");
-        alert ("Let bij het selecteren van segmenten op! Zorg dat je van A -> B segmenten selecteert en controleer deze voor het opslaan!");
-    }
-
+    
+    console.log("S/E: Start 
+    
     // Get the polyline element
     var polylineElement = document.getElementsByClassName('col-xs-10')[2]
 
