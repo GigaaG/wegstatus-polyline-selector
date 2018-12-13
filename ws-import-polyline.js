@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wegstatus Get Start / End From Polyline
 // @namespace    http://wegstatus.nl/
-// @version      0.1.0
+// @version      0.1.2
 // @description  Adds a button to the Wegstatus Reportal to get the start and end location from the polyline.
 // @author       Sjors "GigaaG" Luyckx
 // @match        https://www.wegstatus.nl/*
@@ -40,6 +40,6 @@
             var toLat = $('#latitude2').val(coordinates[lastCoordinate - 2]);
             var toLng = $('#longitude2').val(coordinates[lastCoordinate - 1]);
         }
+        return false
     }
-    return false
 })();
