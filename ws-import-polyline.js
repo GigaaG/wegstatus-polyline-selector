@@ -9,18 +9,18 @@
 // @grant        GM_setValue
 
 // ==/UserScript==
-
 // De matchurl die niet werkt: /^https\:\/\/www.wegstatus.nl\/(reportal|roadworknl)\/
+
 (function() {
     console.log('Start S/E');
 
     // Message on first use
     var updateAlert = GM_getValue ("updateAlert",  "");
 
-if (updateAlert != "0.0.2") {
-    GM_setValue ("updateAlert", "0.0.2");
-    alert ("Let bij het selecteren van segmenten op! Zorg dat je van A -> B segmenten selecteert en controleer deze voor het opslaan!");
-}
+    if (updateAlert != "0.0.2") {
+        GM_setValue ("updateAlert", "0.0.2");
+        alert ("Let bij het selecteren van segmenten op! Zorg dat je van A -> B segmenten selecteert en controleer deze voor het opslaan!");
+    }
 
     // Get the polyline element
     var polylineElement = document.getElementsByClassName('col-xs-10')[2]
@@ -45,10 +45,7 @@ if (updateAlert != "0.0.2") {
             var fromLng = $('#longitude1').val(coordinates[1]);
             var toLat = $('#latitude2').val(coordinates[lastCoordinate - 2]);
             var toLng = $('#longitude2').val(coordinates[lastCoordinate - 1]);
-            console.log(fromLat + ' ' + fromLng + ' ' + toLat + ' ' + toLng);
-        } else {
-            console.error("S/E: There are 4 or more coordinates required to create a polyline. Please check your polyline.")
         }
-        return false
     }
+    return false
 })();
