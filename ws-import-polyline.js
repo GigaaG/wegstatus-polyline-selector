@@ -17,7 +17,7 @@
     console.log("S/E: Start script");
     
     // Get the polyline element
-    var polylineElement = document.getElementsByClassName('col-xs-10')[2]
+    var polylineElement = document.getElementsByClassName('col-xs-10')[2];
 
     // Create and add button
     var button = document.createElement('button');
