@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wegstatus Get Start / End From Polyline
 // @namespace    http://wegstatus.nl/
-// @version      0.0.5
+// @version      0.1.0
 // @description  Adds a button to the Wegstatus Reportal to get the start and end location from the polyline.
 // @author       Sjors "GigaaG" Luyckx
 // @match        https://www.wegstatus.nl/*
