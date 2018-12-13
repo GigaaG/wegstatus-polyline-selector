@@ -1,4 +1,4 @@
-# Wegstatus Polyline Selector
+# Wegstatus Polyline Selector v2
 Adds a link in the segment-panel to grab the polyline. 
 
 ## In this update:
