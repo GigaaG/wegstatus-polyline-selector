@@ -38,9 +38,11 @@
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
             let polyline = '';
-            var countSegments = W.selectionManager.getSelectedFeatures().length;
-            const feature = W.selectionManager.getSelectedFeatures();
-
+            var countSegments = W.selectionManager.getSegmentSelection().segments.length
+            //var countSegments = W.selectionManager.getSelectedFeatures().length;
+            const feature = W.selectionManager.getSegmentSelection().segments[0]
+            //const feature = W.selectionManager.getSelectedFeatures();
+            
             for (a = 0 ; a < countSegments ; a++){
                 const component = feature[a].geometry.components
                 var points = component.length;
