@@ -39,12 +39,13 @@
         $('#grab-polyline').click(function () {
             let polyline = '';
             var countSegments = W.selectionManager.getSegmentSelection().segments.length
-            //var countSegments = W.selectionManager.getSelectedFeatures().length;
-            const feature = W.selectionManager.getSegmentSelection().segments[0]
-            //const feature = W.selectionManager.getSelectedFeatures();
-            
+            const feature = W.selectionManager.getSegmentSelection().segments
+
             for (a = 0 ; a < countSegments ; a++){
                 const component = feature[a].geometry.components
+                if (feature[a].attributes.fwdDirection == false && feature[a].attributes.revDirection == true){
+                    component.reverse();
+                }
                 var points = component.length;
                 for (b = 0 ; b < points ; b++){
                     var coordinates = component[b].clone().transform(W.map.getProjection(), 'EPSG:4326');
