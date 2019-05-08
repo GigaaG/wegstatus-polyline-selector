@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Wegstatus Polyline Selector TEST
+// @name         Wegstatus Polyline Selector
 // @namespace    https://wegstatus.nl
 // @version      2019.05.8.1
 // @description  Adds a link in the segment-panel to grab the polyline.
