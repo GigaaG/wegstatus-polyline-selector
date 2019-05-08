@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Wegstatus Polyline Selector v2
+// @name         Wegstatus Polyline Selector
 // @namespace    https://wegstatus.nl
-// @version      2019.05.8.3
+// @version      2019.05.8.14
 // @description  Adds a link in the segment-panel to grab the polyline.
 // @author       Xander "Xanland" Hoogland & Sjors "GigaaG" Luyckx
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
@@ -10,28 +10,52 @@
 
 (function () {
     const copyText = 'Click to copy';
-    $('head').append('<style type="text/css">#grab-polyline { background-image: url(https://www.wegstatus.nl/favicon-16x16.png); background-repeat: no-repeat; background-size: 20px 20px; background-position-x: 32%; background-position-y: 40%; }</style>');
+    $('head').append('<style type="text/css">#grab-polyline { background-image: url(https://www.wegstatus.nl/favicon-16x16.png); background-repeat: no-repeat; background-size: 20px 20px; background-position-x: 32%; background-position-y: 40%; margin-right: 5px}</style>');
 
-    setInterval(function() {
-        const selectedItemsCount = W.selectionManager.getSelectedFeatures().length;
-        if (selectedItemsCount >= 1) {
-            if ($("#grab-polyline").length == 0){
-                // Easy hack to show the button in F(ix)U(I)
-                const $fuButtons = $('#edit-panel .more-actions');
-                if ($fuButtons.css('display') == 'inline-flex') {
-                    $fuButtons.css('display', 'initial');
-                    $('head').append('<style type="text/css">#grab-polyline { background-position-x: 10%; }</style>');
+    function bootstrap(tries = 1) {
+        if (W && W.map &&
+            W.model && W.loginManager.user &&
+            $ ) {
+            init();
+        } else if (tries < 1000)
+            setTimeout(function () {bootstrap(tries++);}, 200);
+    }
+
+    function init(){
+        var targetNode = document.querySelector("#edit-panel");
+        // Options for the observer (which mutations to observe)
+        var config = {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            characterData: true
+        };
+        // Callback function to execute when mutations are observed
+        var callback = function(mutationsList, observer) {
+            const selectedItemsCount = W.selectionManager.getSelectedFeatures().length;
+            if (selectedItemsCount >= 1) {
+                if ($("#grab-polyline").length == 0){
+                    // Easy hack to show the button in F(ix)U(I)
+                    const $fuButtons = $('#edit-panel .more-actions');
+                    if ($fuButtons.css('display') == 'inline-flex') {
+                        $fuButtons.css('display', 'initial');
+                        $('head').append('<style type="text/css">#grab-polyline { background-position-x: 10%; }</style>');
+                    }
+                    $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"> Grab polyline v2</button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
+                    $('#grab-polyline').tooltip({ trigger: 'hover' });
+                    addClickHanderForGrabPolylineButton();
                 }
-
-                $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"> Grab polyline v2</button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
-                $('#grab-polyline').tooltip({ trigger: 'hover' });
-                addClickHanderForGrabPolylineButton();
+            } else {
+                $('#grab-polyline').parent().remove();
             }
-        }
-        else {
-            $('#grab-polyline').parent().remove();
-        }
-    }, 500);
+        };
+
+        // Create an observer instance linked to the callback function
+        var observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
+    }
 
     function addClickHanderForGrabPolylineButton() {
         $('#grab-polyline').click(function () {
@@ -67,4 +91,6 @@
             }, 3000);
         });
     }
+
+    bootstrap();
 })();
