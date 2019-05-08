@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Wegstatus Polyline Selector
+// @name         Wegstatus Polyline Selector TEST
 // @namespace    https://wegstatus.nl
-// @version      2019.05.8.14
+// @version      2019.05.8.1
 // @description  Adds a link in the segment-panel to grab the polyline.
 // @author       Xander "Xanland" Hoogland & Sjors "GigaaG" Luyckx
 // @include      /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor([^\/]?.*)?$/
@@ -10,7 +10,7 @@
 
 (function () {
     const copyText = 'Click to copy';
-    $('head').append('<style type="text/css">#grab-polyline { background-image: url(https://www.wegstatus.nl/favicon-16x16.png); background-repeat: no-repeat; background-size: 20px 20px; background-position-x: 32%; background-position-y: 40%; margin-right: 5px}</style>');
+    $('head').append('<style type="text/css">#grab-polyline { background-image: url(https://www.wegstatus.nl/favicon-16x16.png); background-repeat: no-repeat; background-size: 20px 20px; background-position-x: 32%; background-position-y: 40%;}</style>');
 
     function bootstrap(tries = 1) {
         if (W && W.map &&
@@ -41,7 +41,7 @@
                         $fuButtons.css('display', 'initial');
                         $('head').append('<style type="text/css">#grab-polyline { background-position-x: 10%; }</style>');
                     }
-                    $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"> Grab polyline v2</button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
+                    $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"><span style="margin-left: 15px">Grab polyline v2</span></button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
                     $('#grab-polyline').tooltip({ trigger: 'hover' });
                     addClickHanderForGrabPolylineButton();
                 }
