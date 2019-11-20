@@ -70,7 +70,7 @@
                 }
                 var points = component.length;
                 for (var b = 0 ; b < points ; b++){
-                    var coordinates = component[b].clone().transform(W.map.getProjection(), 'EPSG:4326');
+                    var coordinates = component[b].clone().transform(W.map.getProjectionObject(), 'EPSG:4326');
                     var x = coordinates.x
                     var y = coordinates.y
                     var latlon = ''+ y +' '+ x +' ';
