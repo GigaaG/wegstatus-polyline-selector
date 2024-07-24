@@ -41,7 +41,7 @@
                         $fuButtons.css('display', 'initial');
                         $('head').append('<style type="text/css">#grab-polyline { background-position-x: 10%; }</style>');
                     }
-                    $('#segment-edit-general > div.form-group.more-actions').append('<div class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"><span style="margin-left: 15px">Grab polyline v2</span></button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
+                    $('#segment-edit-general > div:nth-child(1) > div > div > div.alt-streets-control').append('<div style="margin-top: 25px" class="edit-house-numbers-btn-wrapper"><button class="action-button waze-btn waze-btn-white" id="grab-polyline" title="' + copyText + '"><span style="margin-left: 50px">Grab polyline v2</span></button><textarea id="grab-polyline-textarea" style="display:none"></textarea></div>');
                     $('#grab-polyline').tooltip({ trigger: 'hover' });
                     addClickHanderForGrabPolylineButton();
                 }
