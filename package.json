@@ -1,0 +1,26 @@
+{
+  "name": "wegstatus-polyline-selector",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WME userscript that copies selected segments as a Wegstatus polyline.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.1",
+    "@types/geojson": "^7946.0.16",
+    "esbuild": "^0.25.9",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
+    "wme-sdk-typings": "https://web-assets.waze.com/wme_sdk_docs/production/latest/wme-sdk-typings.tgz"
+  }
+}
